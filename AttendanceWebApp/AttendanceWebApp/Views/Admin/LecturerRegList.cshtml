@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AttendanceWebApp.Models.LecturerReg>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "LecturerRegList";
+}
+
+<div class="view">
+    <div class=" mt-5 pt-5 d-flex justify-content-center align-content-center">
+        <p>
+            @Html.ActionLink("Create New", "LecturerReg")
+        </p>
+    </div>
+<div class="container d-flex justify-content-center align-content-center"> 
+    <table class="table  table-bordered dataTables_length bs-select" id="dtBasicExample">
+        <thead>
+            <tr class="white-text">
+                <th>
+                    @Html.DisplayNameFor(model => model.Course.course_code)
+                    <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lecturer.lecturer_name)
+                    <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                </th>
+                <th class="white-text">Operations</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            @foreach (var item in Model)
+    {
+        <tr class="white-text">
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.course_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lecturer.lecturer_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.lecturer_regID }, new { @style = "color:#ffffff" })  |
+                @Html.ActionLink("Details", "Details", new { id = item.lecturer_regID }, new { @style = "color:#ffffff" })  |
+                @Html.ActionLink("Delete", "Delete", new { id = item.lecturer_regID }, new { @style = "color:#ffffff" }) 
+            </td>
+        </tr>
+}
+        </tbody> 
+    </table>
+
+</div>
+<div>
+    @Html.ActionLink("Back to Admin", "Index")
+</div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+}

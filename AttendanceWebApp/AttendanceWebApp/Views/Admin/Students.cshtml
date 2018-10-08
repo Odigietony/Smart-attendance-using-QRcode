@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AttendanceWebApp.Models.Student>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Students";
+}
+
+<div class="view">
+    <div class=" mt-5 pt-5 d-flex justify-content-center align-content-center">
+        @Html.ActionLink("Create New", "StaffRegistration")
+    </div>
+    <div class="container d-flex justify-content-center align-content-center">
+        <table class="table table-bordered dataTables_length bs-select" id="dtBasicExample">
+            <thead>
+                <tr class="white-text">
+                    <th>
+                        @Html.DisplayNameFor(model => model.student_name)
+                        <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.student_matric_number)
+                        <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                    </th>
+                    <th class="white-text">Operations  <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                 {
+                    <tr class="white-text">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.student_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.student_matric_number)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.studentID }, new { @style = "color:#ffffff" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.studentID }, new { @style = "color:#ffffff" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.studentID }, new { @style = "color:#ffffff" })
+                        </td>
+                    </tr>
+                 } 
+            </tbody> 
+        </table> 
+    </div>
+    <div>
+        @Html.ActionLink("Back to Admin", "Index")
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+}

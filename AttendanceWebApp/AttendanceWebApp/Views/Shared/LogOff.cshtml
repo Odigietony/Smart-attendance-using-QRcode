@@ -1,0 +1,27 @@
+﻿@model AttendanceWebApp.Models.Course
+ 
+@if (@Session["Name"] != null)
+{
+    using (Html.BeginForm("LogOff", "Staff", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Welcome, @Session["Name"]!
+                </a>    
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                </div>
+            </li> 
+        </ul>
+    }
+}
+else
+{
+     <li >@Html.ActionLink("Log in", "Login", "Staff", routeValues: null, htmlAttributes: new { @style = "color:#C0C0C0"  })</li>
+     
+}
+
+ 

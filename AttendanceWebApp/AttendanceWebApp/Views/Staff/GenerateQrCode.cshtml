@@ -1,0 +1,22 @@
+﻿@model IEnumerable<AttendanceWebApp.Models.Course>
+@{
+    ViewBag.Title = "GenerateQrCode";
+}
+
+
+
+<div class="container mt-5 pt-5 d-flex justify-content-center align-items-md-center">
+   
+    <div class="row mt-5 pt-5 d-flex justify-content-center align-items-md-center">
+        <h2 class="col-md-12">GenerateQrCode</h2>
+        <div class="text-center mt-5">
+            <img class="img-fluid" src="@(ViewData["QrImage"])" alt="Qr Code Image" style="width:15rem; height:15rem;"/>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

@@ -1,0 +1,30 @@
+﻿@model AttendanceWebApp.Models.Lecturer
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container mt-5 pt-3  animated zoomInDown delay-3s">
+
+    <h3 class="mt-5">Attendance Application</h3>
+    <p>
+        Attendance Application is a web application that allows students to
+        sign the attendance form remotely with a specific password and Qr generated code.
+        This application provides better attention in the class room
+        as students are not distarcted from the days topic due to passing of attendance sheet,
+        they can simply scan the Qr code provided by the lecturer and sign the
+        attendance remotely with a specific password also provided by the lecturer.
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <h3>Log in</h3>
+                <hr />
+                <p><a class="btn btn-sm btn-outline-white" id="button" href="@Url.Action("Login", "Admin")">Admin Login &raquo;</a></p>
+                <hr />
+                <p><a class="btn btn-sm btn-outline-white" id="button" href="@Url.Action("Login", "Staff")">Staff Login &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+ 

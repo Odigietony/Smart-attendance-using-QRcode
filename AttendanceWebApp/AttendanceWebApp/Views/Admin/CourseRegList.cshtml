@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AttendanceWebApp.Models.CourseReg>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "CourseRegList";
+}
+
+
+<div class="view">
+    <div class="mt-5 pt-5 d-flex justify-content-center align-content-center">
+        @Html.ActionLink("Create New", "StaffRegistration")
+    </div>
+    <div class="container d-flex justify-content-center align-content-center ">
+        
+            <table class="table table-bordered dataTables_length bs-select display-3" id="dtBasicExample" style="width:60rem;">
+                <thead>
+                    <tr class="white-text">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Course.course_title)
+                            <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Student.student_name)
+                            <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                <tr class="white-text">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.course_title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Student.student_name)
+                    </td>
+                </tr>
+    }
+                </tbody>
+
+            </table>
+       
+      
+    </div>
+    <div>
+        @Html.ActionLink("Back to Admin", "Index")
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+                scrollY: '50vh',
+                scrollCollapse: true,
+                paging: false
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+}

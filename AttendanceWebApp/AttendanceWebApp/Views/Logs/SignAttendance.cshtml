@@ -1,0 +1,66 @@
+﻿@model AttendanceWebApp.Models.Attendance
+
+@{
+    ViewBag.Title = "SignAttendance";
+}
+
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="card animated jello delay-3s" style="width: 30rem; height: 25rem;">
+            <div class="card-header text-dark">
+                <h2>Sign Attendance</h2>
+            </div>
+            <div class="card-body mt-5">
+                <div class="card-text text-dark">
+
+                    @if (ViewData["Time Expired"] != null)
+                     {
+                        <h6 class="animated bounceInDown text-danger"> @ViewData["Time Expired"]</h6>
+                     }
+
+                    @if (ViewData["Sign Once"] != null)
+                    {
+                    <h6 class="animated bounceInDown  text-danger"> @ViewData["Sign Once"]</h6> 
+                    }
+
+                    @if (ViewData["Unregistered"] != null)
+                     {
+                        <h6 class="animated bounceInDown text-danger">@ViewData["Unregistered"]</h6>
+                         
+                     }
+
+                    @if (ViewData["Wrong Details"] != null)
+                    {
+                    <h6 class="animated bounceInDown  text-danger"> @ViewData["Wrong Details"]</h6>
+                       
+                    }
+
+                    @using (Html.BeginForm())
+                     {
+                            @Html.AntiForgeryToken() 
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group d-flex align-content-center justify-content-lg-center">
+                                @Html.LabelFor(model => model.Student.student_matric_number, htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.Student.student_matric_number, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Student.student_matric_number, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex align-content-center justify-content-lg-center">
+                                @Html.LabelFor(model => model.Course.PasswordToken.password_token, htmlAttributes: new { @class = "control-label " })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Course.PasswordToken.password_token, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Course.PasswordToken.password_token, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-center align-items-center">
+                                <input type="submit" class="btn btn-sm btn-dark-green" value="Sign" />
+                            </div> 
+                     } 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

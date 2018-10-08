@@ -1,0 +1,28 @@
+﻿#intro {
+    background-image: url('/Content/Images/black-and-white-book-dark-34084.jpg');
+    background-position: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+#admin {
+    background-image: url('/Content/Images/black-and-white-macro-pencils-117018.jpg');
+    background-position: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+html, body, #intro, #admin {
+    width: 100%;
+    height: 100%;
+    color: lightgray !important;
+    font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#button:hover{
+    background-color: silver !important;
+     color: darkslategray !important;
+}
+
+#text > a{
+     color:#ffffff !important;
+ }

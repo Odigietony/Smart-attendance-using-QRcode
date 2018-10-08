@@ -1,0 +1,81 @@
+﻿@model AttendanceWebApp.Models.Course
+@using AttendanceWebApp.Models
+
+@{
+    ViewBag.Title = "Index";
+    IEnumerable<LecturerReg> similar = ViewBag.getSimilar;
+}
+
+<div class="view">
+    <div class="mt-5 pt-5 d-flex justify-content-center align-content-center">
+        <h4> Welcome, @Session["Name"]</h4>
+    </div>
+    <div class="container d-flex justify-content-center align-content-center">
+        @if (Session["Name"] != null)
+        {
+
+
+            <table class="table table-bordered dataTables_length bs-select" id="dtBasicExample">
+                <thead>
+                    <tr class="white-text">
+                        <th>
+                            @Html.DisplayNameFor(model => model.course_code)
+                            <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.course_title)
+                            <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.number_of_days)
+                            <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PasswordToken.password_token)
+                            <i class="ui-sortable-column-icon fa fa-fw fa-sort fa-sort-asc"></i>
+                        </th>
+                        <th class="white-text">Operations</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in similar)
+                    {
+                        if (item.Lecturer.lecturer_name == Session["Name"].ToString())
+                        {
+                            <tr class="white-text">
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Course.course_code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Course.course_title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Course.number_of_days)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Course.PasswordToken.password_token)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("View Attendance", "Index", "Logs", new { id = item.Course.courseID }, new { @style = "color:#ffffff" }) |
+                                    @Html.ActionLink("Generate Password", "GeneratePassword", new { id = item.Course.courseID }, new { @style = "color:#ffffff" }) |
+                                    @Html.ActionLink("Generate QR Code", "GenerateQrCode", new { id = item.Course.courseID }, new { @style = "color:#ffffff" })
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+    @section Scripts{
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
+        </script>
+    }
